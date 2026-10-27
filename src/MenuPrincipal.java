@@ -18,8 +18,14 @@ public class MenuPrincipal {
                     "10. Salir\n" +
                     "==========================\n" +
                     "Elige una opcion:");
-            respuesta=entradaUsuario.nextInt();
-            entradaUsuario.nextLine();// agrega linea que consume el salto pendiente
+            if (entradaUsuario.hasNextInt()) {
+                respuesta = entradaUsuario.nextInt();
+                entradaUsuario.nextLine(); // consume el salto pendiente
+            } else {
+                entradaUsuario.nextLine(); //descarta lo que escribo
+                System.out.println("Opcion invalida, intenta de nuevo.");
+                continue; // salta el switch y vuelve a mostrar el menu
+            }
 
             switch (respuesta){
                 case 1:
@@ -63,6 +69,11 @@ public class MenuPrincipal {
                     break;
 
                 case 7:
+                    System.out.println("Ingrese el nombre del contacto: ");
+                    String nombreContGrupo = entradaUsuario.nextLine();
+                    System.out.println("Ingrese el nombre del grupo: ");
+                    String grupoDestino = entradaUsuario.nextLine();
+                    agenda1.agregarContactoAGrupo(nombreContGrupo, grupoDestino);
                     break;
 
                 case 8:
@@ -70,6 +81,9 @@ public class MenuPrincipal {
                     break;
 
                 case 9:
+                    System.out.println("Ingrese el nombre del grupo: ");
+                    String grupoMostrar = entradaUsuario.nextLine();
+                    agenda1.mostrarContactosPorGrupo(grupoMostrar);
                     break;
 
                 case 10:
