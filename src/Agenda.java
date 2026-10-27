@@ -69,7 +69,41 @@ public class Agenda {
         }
     }
 
+    public void agregarContactoAGrupo(String nombreContacto, String nombreGrupo){
+        if(!mapaContactos.containsKey(nombreContacto)){
+            System.out.println("Error: El contacto " +nombreContacto+ " no existe");
+            return;
+        }
+        if (!mapaGrupos.containsKey(nombreGrupo)){
+            System.out.println("Error: El grupo " +nombreGrupo+ " no existe");
+            return;
+        }
+            mapaGrupos.get(nombreGrupo).add(nombreContacto);
+        System.out.println("Contacto agregado al grupo: "+nombreGrupo);
+    }
 
+
+    public void listarGrupos(){
+        for (String grupo:setGrupos){
+            System.out.println(grupo);
+        }
+    }
+
+    public void mostrarContactosPorGrupo(String nombreGrupo){
+        if(!mapaGrupos.containsKey(nombreGrupo)){
+            System.out.println("Error: El nombre de grupo " +nombreGrupo+ " no existe");
+            return;
+        }
+        Set<String> nombresContactos = mapaGrupos.get(nombreGrupo);
+        if(nombresContactos.isEmpty()){
+            System.out.println("El grupo " + nombreGrupo + " no tiene contactos");
+            return;
+        }
+        System.out.println("Contactos en el grupo: " + nombreGrupo);
+        for (String nombre : nombresContactos) {
+            System.out.println("- "+mapaContactos.get(nombre));
+        }
+    }
 
 
 
